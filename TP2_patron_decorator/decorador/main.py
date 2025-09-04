@@ -53,31 +53,22 @@ def main():
     print(f"Pedido 2: {beverage2.get_description()} {beverage2.get_size()} ${beverage2.cost():.2f}")
 
     # Pedido 3: Un HouseBlend con Soja, Mocha y Crema.
-    beverage3 = HouseBlend()
-    beverage3 = Soy(beverage3)
-    beverage3 = Mocha(beverage3)
-    beverage3 = Whip(beverage3)
+
+    beverage3 = builder.build_beverage(HouseBlend, Beverage.TALL, [Soy, Mocha, Whip])
     print(f"Pedido 3: {beverage3.get_description()} {beverage3.get_size()} ${beverage3.cost():.2f}")
 
     # Pedido 4: Un HouseBlend VENTI con Soja, Mocha y Crema.
-    beverage4 = HouseBlend()
-    beverage4.set_size(Beverage.VENTI)
-    beverage4 = Soy(beverage4)
-    beverage4 = Mocha(beverage4)
-    beverage4 = Whip(beverage4)
+
+    beverage4 = builder.build_beverage(HouseBlend, Beverage.VENTI, [Soy, Mocha, Whip])
     print(f"Pedido 4: {beverage4.get_description()} {beverage4.get_size()} ${beverage4.cost():.2f}")
 
     # Pedido 5: Un Espresso con Caramelo y Crema
-    beverage5 = Espresso()
-    beverage5 = Caramel(beverage5)
-    beverage5 = Whip(beverage5)
+    beverage5 = builder.build_beverage(Espresso, Beverage.TALL, [Caramel, Whip, Whip])
     print(f"Pedido 5: {beverage5.get_description()} {beverage5.get_size()} ${beverage5.cost():.2f}")
 
-    # -----------------------------------------------------------
     # Pedido 6
     beverage6 = builder.build_beverage(Espresso, Beverage.TALL, [Caramel, Caramel, Whip])
     print(f"Pedido 6: {beverage6.get_description()}, {beverage6.get_size()} ${beverage6.cost():.2f}")
-
     print(f"Probando el print: {pretty_descripcion(beverage6)}, {beverage6.get_size()} ${beverage6.cost():.2f}")
 
 if __name__ == "__main__":
